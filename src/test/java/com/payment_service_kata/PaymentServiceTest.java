@@ -10,7 +10,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -29,7 +28,6 @@ class PaymentServiceTest {
     @Mock
     PaymentGateway paymentGateWay;
 
-    @InjectMocks
     PaymentService paymentService;
 
     @BeforeEach
@@ -40,7 +38,7 @@ class PaymentServiceTest {
     @Test
     void processing_payment_for_user_that_does_not_exist_throws_exception() {
         when(userRepository.getUser(user)).thenReturn(Optional.empty());
-        
+
         assertThrows(IllegalArgumentException.class, () -> paymentService.processPayment(user, paymentDetails));
     }
 
